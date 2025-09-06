@@ -1,0 +1,8 @@
+torch>=1.7.0
+numpy>=1.19.0
+ffmpeg-python>=0.2.0
+funasr>=0.8.0
+openai-whisper>=20230314
+soundfile>=0.12.1
+modelscope>=1.9.5
+jieba>=0.42.1

@@ -1,0 +1,160 @@
+{
+  "last_node_id": 4,
+  "last_link_id": 3,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadAudioVideo",
+      "pos": [200, 200],
+      "size": [210, 100],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio_video",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "audio_video"
+          }
+        },
+        {
+          "name": "sample_rate",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "sample_rate"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [1],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadAudioVideo"
+      },
+      "widgets_values": [
+        "",
+        "16000"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "WhisperModelLoader",
+      "pos": [200, 350],
+      "size": [210, 100],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model_name",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "model_name"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "whisper_model",
+          "type": "WHISPER_MODEL",
+          "links": [2],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "WhisperModelLoader"
+      },
+      "widgets_values": [
+        "tiny"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "FunASRModelLoader",
+      "pos": [200, 500],
+      "size": [210, 100],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model_name",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "model_name"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "funasr_model",
+          "type": "FUNASR_MODEL",
+          "links": [3],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FunASRModelLoader"
+      },
+      "widgets_values": [
+        "paraformer-zh"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "AudioVideoToText",
+      "pos": [500, 300],
+      "size": [210, 100],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 1
+        },
+        {
+          "name": "whisper_model",
+          "type": "WHISPER_MODEL",
+          "link": 2
+        },
+        {
+          "name": "funasr_model",
+          "type": "FUNASR_MODEL",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AudioVideoToText"
+      }
+    }
+  ],
+  "links": [
+    [1, 1, 0, 4, 0, "AUDIO"],
+    [2, 2, 0, 4, 1, "WHISPER_MODEL"],
+    [3, 3, 0, 4, 2, "FUNASR_MODEL"]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
